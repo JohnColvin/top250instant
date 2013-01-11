@@ -1,1 +1,9 @@
 h1 Movies
+
+- @imdb_movies.each_with_index do |movie, index|
+  - rank = (@page - 1)*10 + index + 1
+  h3 #{rank}. #{movie['title']} (#{movie['release_year']})
+
+
+.pull-left= link_to 'Previous', movies_path(page: @page - 1) unless @page == 1
+.pull-right= link_to 'Next', movies_path(page: @page + 1) unless @page == 25

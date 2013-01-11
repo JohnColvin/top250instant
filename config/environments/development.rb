@@ -34,4 +34,7 @@ Top250instant::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  ENV['IMDB_API_URL'] = 'http://localhost:3001'
+
 end
