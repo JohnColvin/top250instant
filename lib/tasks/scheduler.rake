@@ -4,6 +4,7 @@ namespace :cache do
   task :root => :environment do
     app = ActionDispatch::Integration::Session.new(Rails.application)
     app.get '/'
-    File.open(File.join(ActionController::Base.page_cache_directory, 'index.html'), 'w') { |f| f.write(app.response.body) }
+    cache = Dalli::Client.new
+    cache.set('views/top250instant.herokuapp.com/index', app.response.body, 172800)
   end
 end
