@@ -1,8 +1,7 @@
 class MoviesController < ApplicationController
 
   def index
-    @page = params[:page].to_i || 1
-    @imdb_movies = Movie.get(:top, page: @page)
+    @imdb_movies = Movie.all(from: :top)
   end
 
 end
