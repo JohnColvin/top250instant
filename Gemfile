@@ -15,5 +15,6 @@ group :assets do
 end
 
 gem 'bootstrap-sass'
+gem 'jquery-rails'
 gem 'netflix4r', github: 'JohnColvin/netflix4r'
 gem 'slim-rails'
