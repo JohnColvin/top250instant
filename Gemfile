@@ -13,3 +13,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
+
+gem 'bootstrap-sass'
+gem 'netflix4r', github: 'JohnColvin/netflix4r'
+gem 'slim-rails'
