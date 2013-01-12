@@ -1,8 +1,9 @@
-task :expire_cache => :environment do
-  cached_page_path = File.join(ActionController::Base.page_cache_directory, 'index.html')
+namespace :cache do
 
-  if File.exists?(cached_page_path)
-    cached_page = Pathname.new cached_page_path
-    cached_page.unlink if cached_page.mtime < 1.day.ago
+  desc 'Caches the root action of this app'
+  task :root => :environment do
+    app = ActionDispatch::Integration::Session.new(Rails.application)
+    app.get '/'
+    File.open(File.join(ActionController::Base.page_cache_directory, 'index.html'), 'w') { |f| f.write(app.response.body) }
   end
 end
