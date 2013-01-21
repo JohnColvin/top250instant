@@ -1,0 +1,9 @@
+.movie
+  - if movie.netflix_instant?
+    .instant
+      = "#{rank}. " if defined? rank
+      = link_to movie, movie.netflix_page
+  - else
+    .not-available.hide
+      = "#{rank}. " if defined? rank
+      = movie
