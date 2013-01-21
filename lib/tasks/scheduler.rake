@@ -19,8 +19,7 @@ namespace :cache do
 
     app = ActionDispatch::Integration::Session.new(Rails.application)
     app.get path
-    # cache.set("views/top250instant.herokuapp.com/#{ name }", app.response.body, 172800)
-    cache.set("views/localhost:4000/#{ name }", app.response.body, 172800)
+    cache.set("views/top250instant.herokuapp.com/#{ name }", app.response.body, 172800)
   end
 
 end
