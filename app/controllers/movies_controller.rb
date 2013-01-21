@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
 
-  caches_action :index
+  caches_action :index, :best
 
   def index
     @imdb_movies = Movie.all(from: :top250)
