@@ -1,13 +1,93 @@
+$red: #c94444
+$dark: #353535
+$mediumFontSize: 28px
+$boldFont: 'brandon_grotesque_boldregular'
+$mediumFont: 'brandon_grotesque_mediumRg'
+$lightGray: #bbb
+$white: #eee
+
 body
-  text-align: center
-  background-image: url(image_path('linedpaper.png'))
-  font-family: 'Coming Soon', cursive
+  background-color: black
 
-#header
-  margin-bottom: 10px
+#page
+  background-color: $white
+  font-family: $boldFont, sans-serif
+  max-width: 960px
+  margin: 0 auto
+  @extend .clearfix
 
-#instant-toggle
-  margin-bottom: 35px
+.movie
+  margin: 20px 0
+  @extend .clearfix
 
-.movie div
-  line-height: 25px
+  div
+    float: left
+    overflow: hidden
+
+  .rank
+    font-size: $mediumFontSize
+    width: 5%
+    text-align: center
+    margin-top: 52px
+
+  .box-art
+    width: 10%
+
+  .details
+    width: 83%
+    margin-left: 15px
+
+    .header
+      width: 100%
+      margin-bottom: 26px
+
+      .title
+        color: $red
+        float: left
+        font-size: $mediumFontSize
+        line-height: 30px
+
+      .meta
+        float: right
+
+        div
+          display: inline-block
+          margin-left: 20px
+
+        .duration
+          font-size: $mediumFontSize
+          line-height: 30px
+          font-family: $mediumFont, sans-serif
+          color: $lightGray
+
+        .rating
+          font-family: $mediumFont, sans-serif
+          background-color: $dark
+          color: $white
+          font-size: 12px
+          height: 18px
+          width: 50px
+          text-align: center
+          margin-top: 6px
+          border-radius: 6px
+
+        .fontello-play-circle
+          color: $red
+          font-size: 32px
+
+    .description
+      font-family: $mediumFont, sans-serif
+      color: $lightGray
+      vertical-align: bottom
+      display: block
+      font-size: 18px
+      line-height: 24px
+      height: 72px
+
+.clearfix::before, .clearfix::after
+  display: table
+  content: ""
+  line-height: 0
+
+.clearfix::after
+  clear: both

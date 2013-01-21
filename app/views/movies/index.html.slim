@@ -1,7 +1,2 @@
-h3#header IMDB Top 250 on Netflix Instant Streaming
-
-div#instant-toggle
-  a.btn.btn-info.hide href='#' data-text="Show entire IMDB top 250"
-
 - @imdb_movies.each_with_index do |movie, index|
   = render movie, rank: index + 1

@@ -1,9 +1,16 @@
 .movie
-  - if movie.netflix_instant?
-    .instant
-      = "#{rank}. " if defined? rank
-      = link_to movie, movie.netflix_page
-  - else
-    .not-available.hide
-      = "#{rank}. " if defined? rank
-      = movie
+  .rank= rank if defined? rank
+  .box-art= image_tag movie.box_art
+
+  .details
+
+    .header
+      .title= movie.title
+
+      .meta
+        .duration 2hr 45min
+        .rating PG-13
+        .instant-button
+          i.fontello-play-circle
+
+    .description=movie.synopsis

@@ -14,6 +14,14 @@ class Movie < ActiveResource::Base
     netflix_title.web_page
   end
 
+  def box_art
+    netflix_title.box_art['large']
+  end
+
+  def synopsis
+    storyline
+  end
+
   private
 
   def netflix_title
