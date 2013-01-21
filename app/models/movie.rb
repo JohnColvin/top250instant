@@ -17,13 +17,10 @@ class Movie < ActiveResource::Base
   private
 
   def netflix_title
-    return @netflix_title if defined? @netflix_title
-    NetFlix::Title.search(term: title, max_results: 10).each_with_index do |nf_title, index|
-      if nf_title.title = title && nf_title.release_year == release_year
-        return @netflix_title = nf_title
-      end
-    end
-    @netflix_title = nil
+    @netflix_title ||= begin
+      results = NetFlix::Title.search(term: title, max_results: 10)
+      results.find{|nf_title| nf_title.title == title && nf_title.release_year == release_year}
+   end
   end
 
 end
