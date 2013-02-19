@@ -1,2 +1,2 @@
 - @imdb_movies.each_with_index do |movie, index|
-  = render movie, rank: index + 1
+  = render 'movie', movie: movie, rank: index + 1

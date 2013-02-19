@@ -149,6 +149,7 @@ DEPENDENCIES
   dalli
   jquery-rails
   netflix4r!
+  nokogiri
   pry
   rails (= 3.2.11)
   sass-rails (~> 3.2.3)
