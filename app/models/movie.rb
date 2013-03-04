@@ -1,7 +1,8 @@
 class Movie
-  attr_reader :title, :release_year, :storyline
+  attr_reader :title, :release_year, :storyline, :id
 
   def initialize(data)
+    @id = data['imdb_id']
     @title = data['title']
     @release_year = data['year']
     @storyline = data['plot_simple']
@@ -50,8 +51,15 @@ class Movie
 
   def netflix_title
     @netflix_title ||= begin
-      results = NetFlix::Title.search(term: title, max_results: 4)
-      results.find{|nf_title| nf_title.title == title && nf_title.release_year.to_i == release_year}
+      if netflix_url = $redis.get(id)
+        data = NetFlix::Request.new(url: netflix_url).send
+        TitleBuilder.from_xml(data).first
+      else 
+        results = NetFlix::Title.search(term: title, max_results: 4)
+        match = results.find{|nf_title| nf_title.title == title && nf_title.release_year.to_i == release_year}
+        $redis.set(id, match.id)
+        match
+      end
    end
   end
 

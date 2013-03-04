@@ -19,6 +19,7 @@ gem 'dalli'
 gem 'thin'
 gem 'jquery-rails'
 gem 'netflix4r', :github => 'JohnColvin/netflix4r'
+gem 'redis'
 gem 'slim-rails'
 
 gem 'nokogiri'
