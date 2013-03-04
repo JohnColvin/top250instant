@@ -40,20 +40,22 @@ class Movie
   end
 
   def self.fetch(imdb_ids)
-    uri = URI.parse("http://imdbapi.org?type=json&ids=#{imdb_ids.join(',')}")
-    result = Net::HTTP.get(uri)
-    data = JSON.parse(result)
-    data.map{ |movie_data| Movie.new(movie_data) }
+    imdb_ids.each_slice(10).map do |ids|
+      uri = URI.parse("http://imdbapi.org?type=json&ids=#{ids.join(',')}")
+      result = Net::HTTP.get(uri)
+      data = JSON.parse(result)
+      data.map{ |movie_data| Movie.new(movie_data) }
+    end.flatten
   end
-
-  private
 
   def netflix_title
     @netflix_title ||= begin
-      results = NetFlix::Title.search(term: title, max_results: 10)
+      results = NetFlix::Title.search(term: title, max_results: 4)
       results.find{|nf_title| nf_title.title == title && nf_title.release_year.to_i == release_year}
    end
   end
+
+  private
 
   def self.best_picture_winner_id(year)
     oscar_results_page = Nokogiri::HTML(open("http://www.imdb.com/event/ev0000003/#{year}"))
