@@ -29,10 +29,20 @@ class Movie
   end
 
   def self.top_250
-    top_table = Nokogiri::HTML(open('http://www.imdb.com/chart/top')).css('div#main table')[1]
-    top_table.children[0].remove #remove header row
-    top_250_ids = imdb_ids_from_anchor_tags(top_table.children.map{ |row| row.at_css('td a') })
-    fetch(top_250_ids[0..2])
+    if cached_top_250_ids = $redis.get('top-250-ids')
+      top_250_ids = JSON.parse(cached_top_250_ids)
+    else
+      uri = URI.parse('http://www.imdb.com/chart/top')
+      http = Net::HTTP.new(uri.host, uri.port)
+      request = Net::HTTP::Get.new(uri.request_uri)
+      response = http.request(request)
+      top_250_page = response.body
+      top_table = Nokogiri::HTML(top_250_page).css('div#main table')[1]
+      top_table.children[0].remove #remove header row
+      top_250_ids = imdb_ids_from_anchor_tags(top_table.children.map{ |row| row.at_css('td a') })
+      $redis.set('top-250-ids', top_250_ids.map(&:to_s))
+    end
+    fetch(top_250_ids)
   end
 
   def self.best_picture_winners
