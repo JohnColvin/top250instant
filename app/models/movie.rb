@@ -32,7 +32,7 @@ class Movie
     top_table = Nokogiri::HTML(open('http://www.imdb.com/chart/top')).css('div#main table')[1]
     top_table.children[0].remove #remove header row
     top_250_ids = imdb_ids_from_anchor_tags(top_table.children.map{ |row| row.at_css('td a') })
-    fetch(top_250_ids)
+    fetch(top_250_ids[0..2])
   end
 
   def self.best_picture_winners
@@ -41,12 +41,29 @@ class Movie
   end
 
   def self.fetch(imdb_ids)
-    imdb_ids.each_slice(10).map do |ids|
+    movies = []
+    uncached_movie_ids = []
+
+    imdb_ids.each do |imdb_id|
+       if data = $redis.get("#{imdb_id}_imdb_data")
+         movies << Movie.new(JSON.parse(data))
+       else
+        uncached_movie_ids << imdb_id
+       end
+     end
+
+    uncached_movie_ids.each_slice(10) do |ids|
       uri = URI.parse("http://imdbapi.org?type=json&ids=#{ids.join(',')}")
       result = Net::HTTP.get(uri)
       data = JSON.parse(result)
-      data.map{ |movie_data| Movie.new(movie_data) }
-    end.flatten
+      data.map do |movie_data|
+        movie = Movie.new(movie_data)
+        $redis.set("#{movie.id}_imdb_data", movie_data.to_json)
+        movies << movie
+      end
+    end
+
+    movies
   end
 
   def netflix_movie
