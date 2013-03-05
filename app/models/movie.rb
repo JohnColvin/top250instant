@@ -56,7 +56,7 @@ class Movie
         TitleBuilder.from_xml(data).first
       else 
         results = NetFlix::Title.search(term: title, max_results: 4)
-        match = results.find{|nf_title| nf_title.title == title && nf_title.release_year.to_i == release_year}
+        match = results.find{|nf_title| nf_title.title.downcase == title.downcase && nf_title.release_year.to_i == release_year}
         $redis.set(id, match.id) if match
         match
       end
