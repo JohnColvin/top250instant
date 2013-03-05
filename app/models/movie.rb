@@ -13,15 +13,15 @@ class Movie
   end
 
   def netflix_instant?
-    netflix_title.present? && netflix_title.delivery_formats.include?('instant')
+    netflix_movie.present? && netflix_movie.delivery_formats.include?('instant')
   end
 
   def netflix_page
-    netflix_title.web_page
+    netflix_movie.web_page
   end
 
   def box_art
-    netflix_title.box_art['large']
+    netflix_movie.box_art['large']
   end
 
   def synopsis
@@ -49,8 +49,8 @@ class Movie
     end.flatten
   end
 
-  def netflix_title
-    @netflix_title ||= NetflixMovie.find_by_imdb_movie(self)
+  def netflix_movie
+    @netflix_movie ||= NetflixMovie.find_by_imdb_movie(self)
   end
 
   private
