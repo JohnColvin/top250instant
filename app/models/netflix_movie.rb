@@ -17,11 +17,11 @@ class NetflixMovie
     if netflix_url = $redis.get(imdb_movie.id)
       NetflixMovie.new(netflix_url)
     else 
-      results = NetFlix::Title.search(term: title, max_results: 4)
+      results = NetFlix::Title.search(term: imdb_movie.title, max_results: 4)
       match = results.find do |nf_title|
         nf_title.title.downcase == imdb_movie.title.downcase && nf_title.release_year.to_i == imdb_movie.release_year
       end
-      $redis.set(id, match.id) if match
+      $redis.set(imdb_movie.id, match.id) if match
       match
     end
   end
