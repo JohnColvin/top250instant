@@ -1,5 +1,5 @@
 .movie
-  .rank= rank if defined? rank
+  .rank= movie.rank unless movie.rank.blank?
   .box-art= image_tag movie.box_art
 
   .details

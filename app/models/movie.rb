@@ -1,5 +1,6 @@
 class Movie
   attr_reader :title, :year, :plot_simple, :imdb_id, :poster
+  attr_accessor :rank
 
   alias_attribute :id, :imdb_id
   alias_attribute :release_year, :year
@@ -42,7 +43,8 @@ class Movie
       top_250_ids = imdb_ids_from_anchor_tags(top_table.children.map{ |row| row.at_css('td a') })
       $redis.set('top-250-ids', top_250_ids.map(&:to_s))
     end
-    fetch(top_250_ids)
+    movies = fetch(top_250_ids)
+    movies.each_with_index{ |m, i| m.rank = i + 1 }
   end
 
   def self.best_picture_winners
