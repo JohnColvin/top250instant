@@ -36,10 +36,7 @@ class Movie
       top_250_ids = JSON.parse(cached_top_250_ids)
     else
       uri = URI.parse('http://www.imdb.com/chart/top')
-      http = Net::HTTP.new(uri.host, uri.port)
-      request = Net::HTTP::Get.new(uri.request_uri)
-      response = http.request(request)
-      top_250_page = response.body
+      top_250_page = Net::HTTP.get(uri)
       top_table = Nokogiri::HTML(top_250_page).css('div#main table')[1]
       top_table.children[0].remove #remove header row
       top_250_ids = imdb_ids_from_anchor_tags(top_table.children.map{ |row| row.at_css('td a') })
@@ -58,12 +55,12 @@ class Movie
     uncached_movie_ids = []
 
     imdb_ids.each do |imdb_id|
-       if data = $redis.get("#{imdb_id}_imdb_data")
-         movies << Movie.new(JSON.parse(data))
-       else
-        uncached_movie_ids << imdb_id
-       end
+     if data = $redis.get("#{imdb_id}_imdb_data")
+       movies << Movie.new(JSON.parse(data))
+     else
+      uncached_movie_ids << imdb_id
      end
+    end
 
     uncached_movie_ids.each_slice(10) do |ids|
       uri = URI.parse("http://imdbapi.org?type=json&ids=#{ids.join(',')}")
