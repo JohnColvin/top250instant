@@ -24,3 +24,7 @@ gem 'slim-rails'
 
 gem 'nokogiri'
 gem 'pry', :group => [:development, :test]
+
+group :development do
+  gem 'meta_request'
+end
