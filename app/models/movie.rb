@@ -50,17 +50,7 @@ class Movie
   end
 
   def netflix_title
-    @netflix_title ||= begin
-      if netflix_url = $redis.get(id)
-        data = NetFlix::Request.new(url: netflix_url).send
-        TitleBuilder.from_xml(data).first
-      else 
-        results = NetFlix::Title.search(term: title, max_results: 4)
-        match = results.find{|nf_title| nf_title.title.downcase == title.downcase && nf_title.release_year.to_i == release_year}
-        $redis.set(id, match.id) if match
-        match
-      end
-   end
+    @netflix_title ||= NetflixMovie.find_by_imdb_movie(self)
   end
 
   private
