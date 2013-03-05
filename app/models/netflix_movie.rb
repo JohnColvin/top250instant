@@ -5,7 +5,11 @@ class NetflixMovie
   delegate :title, :delivery_formats, :web_page, :box_art, to: :netflix_title
 
   def initialize(netflix_url)
-    data = NetFlix::Request.new(url: netflix_url).send
+    data = $redis.get(netflix_url)
+    unless data
+      data = NetFlix::Request.new(url: netflix_url).send
+      $redis.set(netflix_url, data)
+    end
     @netflix_title = TitleBuilder.from_xml(data).first
   end
 
