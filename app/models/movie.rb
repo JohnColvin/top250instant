@@ -1,11 +1,14 @@
 class Movie
-  attr_reader :title, :release_year, :storyline, :id
+  attr_reader :title, :year, :plot_simple, :imdb_id, :poster
+
+  alias_attribute :id, :imdb_id
+  alias_attribute :release_year, :year
+  alias_attribute :storyline, :plot_simple
 
   def initialize(data)
-    @id = data['imdb_id']
-    @title = data['title']
-    @release_year = data['year']
-    @storyline = data['plot_simple']
+    %w{ imbd_id title year plot_simple poster }.each do |attr|
+      instance_variable_set("@#{attr}", data[attr])
+    end
   end
 
   def to_s
@@ -21,7 +24,7 @@ class Movie
   end
 
   def box_art
-    netflix_movie.box_art['large']
+    netflix_movie ? netflix_movie.box_art['large'] : poster
   end
 
   def synopsis
