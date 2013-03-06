@@ -20,7 +20,6 @@ gem 'thin'
 gem 'jquery-rails'
 gem 'netflix4r', :github => 'JohnColvin/netflix4r'
 gem 'quiet_assets'
-gem 'redis'
 gem 'slim-rails'
 
 gem 'nokogiri'

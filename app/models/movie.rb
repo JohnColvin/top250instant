@@ -33,44 +33,22 @@ class Movie
   end
 
   def self.top_250
-    if cached_top_250_ids = $redis.get('top-250-ids')
-      top_250_ids = JSON.parse(cached_top_250_ids)
-    else
-      uri = URI.parse('http://www.imdb.com/chart/top')
-      top_250_page = Net::HTTP.get(uri)
-      top_table = Nokogiri::HTML(top_250_page).css('div#main table')[1]
-      top_table.children[0].remove #remove header row
-      top_250_ids = imdb_ids_from_anchor_tags(top_table.children.map{ |row| row.at_css('td a') })
-      $redis.set('top-250-ids', top_250_ids.map(&:to_s))
-    end
+    uri = URI.parse('http://www.imdb.com/chart/top')
+    top_250_page = Net::HTTP.get(uri)
+    top_table = Nokogiri::HTML(top_250_page).css('div#main table')[1]
+    top_table.children[0].remove #remove header row
+    top_250_ids = imdb_ids_from_anchor_tags(top_table.children.map{ |row| row.at_css('td a') })
     movies = fetch(top_250_ids)
     movies.each_with_index{ |m, i| m.rank = i + 1 }
   end
 
   def self.fetch(imdb_ids)
-    movies = []
-    uncached_movie_ids = []
-
-    imdb_ids.each do |imdb_id|
-     if data = $redis.get("#{imdb_id}_imdb_data")
-       movies << Movie.new(JSON.parse(data))
-     else
-      uncached_movie_ids << imdb_id
-     end
-    end
-
-    uncached_movie_ids.each_slice(10) do |ids|
+    imdb_ids.each_slice(10).map do |ids|
       uri = URI.parse("http://imdbapi.org?type=json&ids=#{ids.join(',')}")
       result = Net::HTTP.get(uri)
       data = JSON.parse(result)
-      data.map do |movie_data|
-        movie = Movie.new(movie_data)
-        $redis.set("#{movie.id}_imdb_data", movie_data.to_json)
-        movies << movie
-      end
-    end
-
-    movies
+      data.map { |movie_data| movie = Movie.new(movie_data) }
+    end.flatten
   end
 
   def netflix_movie
