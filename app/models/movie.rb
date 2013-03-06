@@ -47,11 +47,6 @@ class Movie
     movies.each_with_index{ |m, i| m.rank = i + 1 }
   end
 
-  def self.best_picture_winners
-    best_picture_ids = (1929..Date.today.year).map{ |year| best_picture_winner_id(year) }.compact
-    fetch(best_picture_ids)
-  end
-
   def self.fetch(imdb_ids)
     movies = []
     uncached_movie_ids = []
@@ -83,16 +78,6 @@ class Movie
   end
 
   private
-
-  def self.best_picture_winner_id(year)
-    oscar_results_page = Nokogiri::HTML(open("http://www.imdb.com/event/ev0000003/#{year}"))
-    awards_block = oscar_results_page.at_css('#main .award')
-    return nil if awards_block.nil?
-    winner_header = awards_block.at_css('h3')
-    return nil unless winner_header.text.downcase == 'winner'
-    best_picture_anchor_tag = winner_header.next_element.at_css('strong a')
-    imdb_id_from_anchor_tag(best_picture_anchor_tag)
-  end
 
   def self.imdb_id_from_anchor_tag(anchor_tag)
     anchor_tag.attribute('href').to_s.match(/(tt[\d]+)/)
