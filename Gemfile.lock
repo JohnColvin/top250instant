@@ -78,6 +78,7 @@ GEM
     mime-types (1.19)
     multi_json (1.5.0)
     nokogiri (1.5.6)
+    pg (0.14.1)
     polyglot (0.3.3)
     pry (0.9.11.4)
       coderay (~> 1.0.5)
@@ -158,6 +159,7 @@ DEPENDENCIES
   meta_request
   netflix4r!
   nokogiri
+  pg
   pry
   quiet_assets
   rails (= 3.2.11)
