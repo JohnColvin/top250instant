@@ -32,16 +32,6 @@ class Movie
     storyline
   end
 
-  def self.top_250
-    uri = URI.parse('http://www.imdb.com/chart/top')
-    top_250_page = Net::HTTP.get(uri)
-    top_table = Nokogiri::HTML(top_250_page).css('div#main table')[1]
-    top_table.children[0].remove #remove header row
-    top_250_ids = imdb_ids_from_anchor_tags(top_table.children.map{ |row| row.at_css('td a') })
-    movies = fetch(top_250_ids)
-    movies.each_with_index{ |m, i| m.rank = i + 1 }
-  end
-
   def self.fetch(imdb_ids)
     imdb_ids.each_slice(10).map do |ids|
       uri = URI.parse("http://imdbapi.org?type=json&ids=#{ids.join(',')}")
@@ -53,16 +43,6 @@ class Movie
 
   def netflix_movie
     @netflix_movie ||= NetflixMovie.find_by_imdb_movie(self)
-  end
-
-  private
-
-  def self.imdb_id_from_anchor_tag(anchor_tag)
-    anchor_tag.attribute('href').to_s.match(/(tt[\d]+)/)
-  end
-
-  def self.imdb_ids_from_anchor_tags(anchor_tags)
-    anchor_tags.map{ |anchor_tag| imdb_id_from_anchor_tag(anchor_tag) }
   end
 
 end
