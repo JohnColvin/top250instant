@@ -32,3 +32,12 @@ namespace :imdb_top_250 do
   end
 
 end
+
+namespace :netflix do
+
+  desc 'Fills in movie that do not have netflix data'
+  task :fill => :environment do
+    Movie.where(netflix_instant: nil).limit(1).each { |movie| movie.fill_from_netflix }
+  end
+
+end
