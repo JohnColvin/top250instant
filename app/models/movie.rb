@@ -9,6 +9,7 @@ class Movie < ActiveRecord::Base
       self[:poster_url]      = netflix_title.box_art[:large]
       self[:length]          = netflix_title.runtime
       self[:mpaa_rating]     = netflix_title.mpaa_rating
+      self[:synopsis]        = netflix_title.synopsis
       save
     end
   end
