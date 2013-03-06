@@ -48,7 +48,7 @@ namespace :netflix do
         print '  '
         puts nf_title.title
         print '  '
-        puts "{ imdb_id: \"#{movie.imdb_id}\", title: \"#{nf_title.title}\", netflix_api_url: \"#{nf_title.id}\" },"
+        puts "{ imdb_id: \"#{movie.imdb_id}\", netflix_api_url: \"#{nf_title.id}\", title: \"#{nf_title.title}\" },"
       end
     end
   end
