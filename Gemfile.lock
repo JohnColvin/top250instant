@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/JohnColvin/netflix4r.git
-  revision: 5df70a12b99ec1d8d05b06ad84fd9080a71e814d
+  revision: 7cc75f7d4b68f41f8c6a5879512c057b583f5c42
   specs:
     netflix4r (0.2.0)
       activesupport
