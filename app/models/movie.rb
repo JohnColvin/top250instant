@@ -7,6 +7,7 @@ class Movie < ActiveRecord::Base
       self[:netflix_api_url] = netflix_title.id
       self[:netflix_instant] = netflix_title.delivery_formats.include?('instant')
       self[:poster_url]      = netflix_title.box_art[:large]
+      self[:length]          = netflix_title.runtime
       save
     end
   end
