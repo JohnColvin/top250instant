@@ -10,6 +10,7 @@ class Movie < ActiveRecord::Base
 
     if netflix_title
       self[:title]           = netflix_title.title
+      self[:release_year]    = netflix_title.release_year
       self[:netflix_api_url] = netflix_title.id
       self[:netflix_instant] = netflix_title.delivery_formats.include?('instant')
       self[:poster_url]      = netflix_title.box_art[:large]
