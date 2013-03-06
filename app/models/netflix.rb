@@ -7,4 +7,9 @@ class Netflix
     end
   end
 
+  def self.fetch(netflix_api_url)
+    data = NetFlix::Request.new(url: netflix_api_url, parameters: { expand: 'synopsis' }).send
+    TitleBuilder.from_xml(data).first
+  end
+
 end
