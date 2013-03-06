@@ -40,4 +40,17 @@ namespace :netflix do
     Movie.where(netflix_instant: nil).each { |movie| movie.fill_from_netflix }
   end
 
+  task :find_missing => :environment do
+    Movie.where(netflix_api_url: nil).each do |movie|
+      puts movie.title
+      results = NetFlix::Title.search(term: movie.title, max_results: 4)
+      results.find do |nf_title|
+        print '  '
+        puts nf_title.title
+        print '  '
+        puts "{ imdb_id: \"#{movie.imdb_id}\", title: \"#{nf_title.title}\", netflix_api_url: \"#{nf_title.id}\" },"
+      end
+    end
+  end
+
 end
