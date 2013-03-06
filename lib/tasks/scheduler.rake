@@ -23,3 +23,12 @@ namespace :cache do
   end
 
 end
+
+namespace :imdb_top_250 do
+
+  desc 'Fetch IMDB top 250'
+  task :fetch => :environment do
+    IMDB.top_250.each { |movie_attributes| Movie.find_or_create_by_imdb_id(movie_attributes) }
+  end
+
+end
