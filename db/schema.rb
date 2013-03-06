@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130306165832) do
+ActiveRecord::Schema.define(:version => 20130306201916) do
 
   create_table "movies", :force => true do |t|
     t.string   "title"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20130306165832) do
     t.string   "netflix_api_url"
     t.boolean  "netflix_instant"
     t.string   "poster_url"
-    t.string   "synopsis"
+    t.text     "synopsis"
     t.string   "mpaa_rating"
     t.integer  "length"
     t.datetime "created_at",      :null => false
