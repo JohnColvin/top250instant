@@ -5,19 +5,19 @@ class IMDB
     top_250_page = Net::HTTP.get(uri)
     top_table = Nokogiri::HTML(top_250_page).css('div#main table')[1]
     top_table.children[0].remove #remove header row
-    imdb_ids_and_titles_from_anchor_tags(top_table.children.map{ |row| row.at_css('td a') })
+    attributes_from_table_rows(top_table.children)
   end
 
   private
 
-  def self.imdb_id_and_title_from_anchor_tag(anchor_tag)
-    { imdb_id: anchor_tag.attribute('href').to_s.match(/(tt[\d]+)/).to_s, title: anchor_tag.text }
+  def self.attributes_from_table_row(table_row)
+    table_cell = table_row.css('td')[2]
+    anchor_tag = table_cell.at_css('a')
+    { imdb_id: anchor_tag.attribute('href').to_s.match(/(tt[\d]+)/).to_s, title: anchor_tag.text, release_year: table_cell.text.match(/(\d{4})/).to_s }
   end
 
-  def self.imdb_ids_and_titles_from_anchor_tags(anchor_tags)
-    anchor_tags.map do |anchor_tag|
-      imdb_id_and_title_from_anchor_tag(anchor_tag)
-    end
+  def self.attributes_from_table_rows(table_rows)
+    table_rows.map { |table_row| attributes_from_table_row(table_row) }
   end
 
 end
