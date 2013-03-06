@@ -8,6 +8,7 @@ class Movie < ActiveRecord::Base
       self[:netflix_instant] = netflix_title.delivery_formats.include?('instant')
       self[:poster_url]      = netflix_title.box_art[:large]
       self[:length]          = netflix_title.runtime
+      self[:mpaa_rating]     = netflix_title.mpaa_rating
       save
     end
   end
