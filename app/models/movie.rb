@@ -30,7 +30,7 @@ class Movie < ActiveRecord::Base
   end
 
   def self.imdb_top_250
-    where('imdb_ranking IS NOT NULL').order('imdb_ranking asc')
+    where('imdb_ranking IS NOT NULL')
   end
 
 end
