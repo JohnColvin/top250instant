@@ -1,6 +1,6 @@
 - show_ranking ||= false
 
-.movie
+.movie class="#{ movie.netflix_instant? ? 'available' : 'not-available' }"
   .rank= movie.imdb_ranking if show_ranking
   .box-art= image_tag movie.poster_url
 
