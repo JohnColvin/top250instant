@@ -14,8 +14,10 @@
           - unless movie.length.nil?
             .duration= Time.at(movie.length).gmtime.strftime('%k hr %M min')
           .rating= movie.mpaa_rating
+
           .instant-button
-            i.fontello-play-circle
+            - if movie.netflix_instant?
+              i.fontello-play-circle
 
     .description
       - if movie.on_netflix?
