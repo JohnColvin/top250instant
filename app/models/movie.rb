@@ -1,5 +1,5 @@
 class Movie < ActiveRecord::Base
-  attr_accessible :imdb_id, :title, :release_year, :netflix_api_url
+  attr_accessible :imdb_id, :title, :release_year, :netflix_api_url, :imdb_ranking
 
   def fill_from_netflix
     if netflix_api_url.blank?
