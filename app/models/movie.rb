@@ -21,4 +21,16 @@ class Movie < ActiveRecord::Base
     end
   end
 
+  def on_netflix?
+    !netflix_instant.nil?
+  end
+
+  def poster_url
+    self[:poster_url] || 'unknown.png'
+  end
+
+  def self.imdb_top_250
+    where('imdb_ranking IS NOT NULL').order('imdb_ranking asc')
+  end
+
 end

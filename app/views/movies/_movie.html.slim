@@ -1,16 +1,24 @@
+- show_ranking ||= false
+
 .movie
-  .rank= movie.rank unless movie.rank.blank?
-  .box-art= image_tag movie.box_art
+  .rank= movie.imdb_ranking if show_ranking
+  .box-art= image_tag movie.poster_url
 
   .details
 
     .header
       .title= movie.title
 
-      .meta
-        .duration 2hr 45min
-        .rating PG-13
-        .instant-button
-          i.fontello-play-circle
+      - if movie.on_netflix?
+        .meta
+          - unless movie.length.nil?
+            .duration= Time.at(movie.length).gmtime.strftime('%k hr %M min')
+          .rating= movie.mpaa_rating
+          .instant-button
+            i.fontello-play-circle
 
-    .description=movie.synopsis
+    .description
+      - if movie.on_netflix?
+        = strip_tags(movie.synopsis)
+      - else
+        | Hmmmm....this movie doesn't seem to be on Netflix

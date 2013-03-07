@@ -22,7 +22,6 @@ body
 
   div
     float: left
-    overflow: hidden
 
   .rank
     font-size: $mediumFontSize
@@ -39,13 +38,14 @@ body
 
     .header
       width: 100%
-      margin-bottom: 26px
+      height: 60px
 
       .title
         color: $red
         float: left
         font-size: $mediumFontSize
         line-height: 30px
+        max-width: 500px
 
       .meta
         float: right
@@ -83,6 +83,7 @@ body
       font-size: 18px
       line-height: 24px
       height: 72px
+      overflow: hidden
 
 .clearfix::before, .clearfix::after
   display: table
