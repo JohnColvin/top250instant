@@ -6,7 +6,7 @@ Top250instant::Application.configure do
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = true
+  config.action_controller.perform_caching = false
 
   config.serve_static_assets = true
 
@@ -61,12 +61,12 @@ Top250instant::Application.configure do
   config.active_support.deprecation = :notify
 
 
-  config.action_dispatch.rack_cache = {
-                          :metastore    => Dalli::Client.new,
-                          :entitystore  => 'file:tmp/cache/rack/body',
-                          :allow_reload => false } # very changed
+  # config.action_dispatch.rack_cache = {
+  #                         :metastore    => Dalli::Client.new,
+  #                         :entitystore  => 'file:tmp/cache/rack/body',
+  #                         :allow_reload => false } # very changed
 
-  config.static_cache_control = "public, max-age=86400" # changed
+  # config.static_cache_control = "public, max-age=86400" # changed
 
 
   # Log the query plan for queries taking more than this (works
