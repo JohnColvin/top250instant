@@ -11,7 +11,18 @@ html
   body
 
     header
-      #instant-toggle
-        a href="#" data-text="Show all"
+      .wrapper
+        a#instant-toggle.view-select href="#" data-text="STREAMING"
+          | ALL
+          .change-icon
+        h1 Movie API
+
+    .sorting-types
+      .wrapper
+        a href="#" class="sorting sort-selected" 1 - 250
+        a href="#" class="sorting" A - Z
+        a href="#" class="sorting" RATING
+        a href="#" class="sorting" YEAR
+        a href="#" class="sorting" LENGTH
 
     #page= yield
