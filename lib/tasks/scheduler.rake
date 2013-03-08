@@ -26,6 +26,9 @@ end
 
 namespace :imdb_top_250 do
 
+  desc 'Fetches the IMDB top 250, fills in netflix data and caches the top 250 page'
+  task :update => [:environment, :fetch, 'netflix:fill', 'cache:root']
+
   desc 'Fetch IMDB top 250'
   task :fetch => :environment do
     Movie.update_all(imdb_ranking: nil)
