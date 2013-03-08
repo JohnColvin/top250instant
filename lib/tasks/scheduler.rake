@@ -27,18 +27,20 @@ end
 namespace :imdb_top_250 do
 
   desc 'Fetches the IMDB top 250, fills in netflix data and caches the top 250 page'
-  task :update => [:environment, :fetch, 'netflix:fill', 'cache:root']
+  task :update => [:environment, :fetch, 'netflix:fill', :rank, 'cache:root']
 
   desc 'Fetch IMDB top 250'
   task :fetch => :environment do
+    IMDB.top_250.each { |movie_attributes| Movie.find_or_create_by_imdb_id(movie_attributes) }
+  end
+
+  desc 'Rank the IMDB top 250'
+  task :rank => :environment do
     Movie.update_all(imdb_ranking: nil)
     IMDB.top_250.each_with_index do |movie_attributes, i|
-      ranking = { imdb_ranking: i+1 }
-      if movie = Movie.find_by_imdb_id(movie_attributes[:imdb_id])
-        movie.update_attributes(ranking)
-      else
-        Movie.create(movie_attributes.merge(ranking))
-      end
+      movie = Movie.find_by_imdb_id(movie_attributes[:imdb_id])
+      movie.imdb_ranking = i+1
+      movie.save
     end
   end
 
