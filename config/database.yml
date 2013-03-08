@@ -1,14 +1,14 @@
 development:
   adapter: sqlite3
-  database: t2
+  database: top250instant
   host: localhost
 
 test:
-  adapter: postgresql
-  database: t2_test
+  adapter: sqlite3
+  database: top250instant_test
   host: localhost
 
 production:
   adapter: postgresql
-  database: t2
+  database: top250instant
   host: localhost

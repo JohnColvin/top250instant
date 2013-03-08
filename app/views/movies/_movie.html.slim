@@ -19,6 +19,8 @@
             - if movie.netflix_instant?
               a href="#" onclick="javascript:nflx.openPlayer('#{movie.netflix_api_url}', 0, 0, '#{ENV['NETFLIX_KEY']}');"
                 i.fontello-play-circle
+            - else
+              i.fontello-play-circle
 
     .description
       - if movie.on_netflix?
