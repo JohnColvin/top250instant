@@ -133,7 +133,7 @@ h1
         color: $dark
 
   &:hover
-    .description
+    .description, .rank, .duration
       color: $dark !important
 
   div
@@ -141,15 +141,18 @@ h1
 
   .rank
     font-size: 20px
-    width: 5%
+    width: 8%
+    color: $lightGray
     text-align: center
-    margin-top: 52px
+    margin-top: 58px
+    +transition ($transition)
+
 
   .box-art
     width: 10%
 
   .details
-    width: 83%
+    width: 80%
     margin-left: 15px
 
     .header
@@ -175,6 +178,7 @@ h1
           line-height: 30px
           font-family: $mediumFont, sans-serif
           color: $lightGray
+          +transition ($transition)
 
         .rating
           font-family: $boldFont, sans-serif
