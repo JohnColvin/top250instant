@@ -19,10 +19,7 @@ html
 
     .sorting-types
       .wrapper
-        a href="?sort=imdb_ranking" class="sorting sort-selected" 1 - 250
-        a href="?sort=title" class="sorting" A - Z
-        a href="?sort=mpaa_rating" class="sorting" RATING
-        a href="?sort=release_year" class="sorting" YEAR
-        a href="?sort=length" class="sorting" LENGTH
+        - { imdb_ranking: '1 - 250', title: 'A - Z', mpaa_rating: 'RATING', release_year: 'YEAR', length: 'LENGTH' }.each do |sort_param, link_text|
+          a.sorting href="?sort=#{sort_param}" class="#{params[:sort] == sort_param.to_s ? 'sort-selected' : ''}" #{link_text}
 
     #page= yield
