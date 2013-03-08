@@ -1,3 +1,5 @@
+@import compass/css3
+
 $red: #c94444
 $dark: #353535
 $mediumFontSize: 24px
@@ -5,6 +7,7 @@ $boldFont: 'brandon_grotesque_boldregular'
 $mediumFont: 'brandon_grotesque_mediumRg'
 $lightGray: #bbb
 $white: #eee
+$transition: color .2s linear
 
 *
   box-sizing: border-box
@@ -73,24 +76,32 @@ h1
   background-color: #dfdfdf
   height: 64px
   text-align: center
-  margin-bottom: 20px
+  margin-bottom: 40px
 
 .sorting
   position: relative
   top: 22px
   display: inline-block
   color: #bbb
-  margin: 0 6%
+  font-size: 15px
+  font-family: $boldFont, sans-serif
+  margin: 0 6.1%
+  +transition ($transition)
+  
   &:first-child
     margin: 0 6% 0 0
   &:last-child
     margin: 0 0 0 6%
 
+  &:hover
+    color: #353535
+    text-decoration: none
+
 .sort-selected
   color: #353535
 
 .movie
-  margin: 20px 0
+  margin: 0 0 60px 0
   @extend .clearfix
 
   &.not-available
@@ -107,7 +118,8 @@ h1
 
     .fontello-play-circle
       color: $red
-      font-size: 32px
+      +transition ($transition)
+
     
       &:hover
         color: $dark
@@ -157,10 +169,10 @@ h1
           color: $lightGray
 
         .rating
-          font-family: $mediumFont, sans-serif
+          font-family: $boldFont, sans-serif
           background-color: $dark
           color: $white
-          font-size: 12px
+          font-size: 11px
           height: 18px
           width: 50px
           text-align: center
@@ -179,6 +191,7 @@ h1
       line-height: 24px
       height: 72px
       overflow: hidden
+      +transition ($transition)
 
 .clearfix::before, .clearfix::after
   display: table
