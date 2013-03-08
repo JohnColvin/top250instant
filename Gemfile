@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
-
+gem 'sqlite3', :group => [:development, :test]
+gem 'pg', :group => [:production]
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -19,7 +20,6 @@ gem 'dalli'
 gem 'thin'
 gem 'jquery-rails'
 gem 'netflix4r', :github => 'JohnColvin/netflix4r'
-gem 'pg'
 gem 'quiet_assets'
 gem 'slim-rails'
 gem 'turbolinks'

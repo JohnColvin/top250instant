@@ -1,5 +1,5 @@
 development:
-  adapter: postgresql
+  adapter: sqlite3
   database: t2
   host: localhost
 
