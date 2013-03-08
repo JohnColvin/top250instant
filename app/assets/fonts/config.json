@@ -1,0 +1,32 @@
+{
+  "name": "",
+  "glyphs": [
+    {
+      "search": [
+        "arrow",
+        "dropdown",
+        "combobox"
+      ],
+      "code": 59215,
+      "uid": "0a3192de65a73ca1501b073ad601f87d",
+      "css": "arrow-combo",
+      "orig_css": "arrow-combo",
+      "orig_code": 59215,
+      "src": "entypo",
+      "from": 59215
+    },
+    {
+      "search": [
+        "play",
+        "player"
+      ],
+      "code": 59233,
+      "from": 59233,
+      "uid": "e835d9d0f2ee39ae01b01cc6a6fa24ab",
+      "css": "play-circle2",
+      "orig_css": "play-circle2",
+      "orig_code": 59233,
+      "src": "fontawesome"
+    }
+  ]
+}
