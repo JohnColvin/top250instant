@@ -7,7 +7,7 @@ $boldFont: 'brandon_grotesque_boldregular'
 $mediumFont: 'brandon_grotesque_mediumRg'
 $lightGray: #bbb
 $white: #eee
-$transition: color .2s linear
+$transition: all .1s linear
 
 *
   box-sizing: border-box
@@ -27,7 +27,6 @@ body
 
 a
   text-decoration: none
-
 
 .wrapper
   max-width: 960px
@@ -94,7 +93,7 @@ h1
   font-size: 15px
   font-family: $boldFont, sans-serif
   margin: 0 6.1%
-  +transition ($transition)
+  +transition (all .2s linear)
   
   &:first-child
     margin: 0 6% 0 0
@@ -109,14 +108,15 @@ h1
   color: #353535
 
 .movie
-  margin: 0 0 60px 0
+  margin: 0 0 40px 0
+  position: relative
   @extend .clearfix
 
   &.not-available
     display: none
 
     .fontello-play-circle
-      opacity: .1
+      +opacity (.1)
       color: $dark
 
       &:hover
@@ -136,20 +136,78 @@ h1
     .description, .rank, .duration
       color: $dark !important
 
+    .reflect 
+      top: -6px
+      opacity: .4
+
+    .shadow
+      opacity: .3
+
+    .box-art 
+      top: -2px
+      +box-shadow (0 1px 1px rgba(0,0,0,.1))
+
   div
     float: left
 
   .rank
     font-size: 20px
-    width: 8%
+    width: 44%
     color: $lightGray
     text-align: center
-    margin-top: 58px
+    margin-top: 44px
     +transition ($transition)
 
+  .artwork
+    width: 144px
 
   .box-art
-    width: 10%
+    width: 77px
+    position: relative
+    z-index: 3
+    +transition ($transition)
+    +box-shadow (0 1px 1px rgba(0,0,0,.4))
+
+  .shadow
+    background: url(/assets/shadow.png)
+    width: 88px
+    height: 8px
+    position: relative
+    margin-left: 40%
+    top: -4px
+    z-index: 2
+    +transition ($transition)
+
+  .reflect  
+    position: relative
+    margin-left: 44%
+    width: 77px
+    height: 24px
+    overflow: hidden
+    top: -8px
+    z-index: 1
+    +transition ($transition)
+
+    .reflection
+      +opacity (.3)
+      position: absolute
+      +transform (scaleY(-1))
+
+      img
+        width: 100%
+
+    .overlay
+      position: absolute
+      z-index: 1
+      width: 100% 
+      height: 100% 
+      background: -moz-linear-gradient(top,  rgba(238,238,238,0) 0%, rgba(238,238,238,1) 100%)
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,0)), color-stop(100%,rgba(238,238,238,1)))
+      background: -webkit-linear-gradient(top,  rgba(238,238,238,0) 0%,rgba(238,238,238,1) 100%)
+      background: -o-linear-gradient(top,  rgba(238,238,238,0) 0%,rgba(238,238,238,1) 100%)
+      background: -ms-linear-gradient(top,  rgba(238,238,238,0) 0%,rgba(238,238,238,1) 100%)
+      background: linear-gradient(to bottom,  rgba(238,238,238,0) 0%,rgba(238,238,238,1) 100%)
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00eeeeee', endColorstr='#eeeeee',GradientType=0 )
 
   .details
     width: 80%
@@ -157,7 +215,6 @@ h1
 
     .header
       width: 100%
-      height: 60px
 
       .title
         color: $red
@@ -200,8 +257,8 @@ h1
       vertical-align: bottom
       display: block
       font-size: 18px
-      line-height: 24px
-      height: 72px
+      line-height: 22px
+      height: 70px
       overflow: hidden
       +transition ($transition)
 
