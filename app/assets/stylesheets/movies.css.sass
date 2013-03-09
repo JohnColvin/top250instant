@@ -162,6 +162,7 @@ h1
 
   .artwork
     width: 144px
+    margin-right: 14px
 
   .box-art
     width: 77px
@@ -213,7 +214,7 @@ h1
 
   .details
     width: 80%
-    margin-left: 15px
+    margin: auto
 
     .header
       width: 100%
@@ -224,7 +225,7 @@ h1
         font-size: $mediumFontSize
         line-height: 30px
         max-width: 500px
-        width: 430px
+        width: 466px
         white-space: nowrap
         overflow: hidden
         text-overflow: ellipsis
@@ -235,6 +236,9 @@ h1
         div
           display: inline-block
           margin-left: 20px
+
+          &:first-child
+            margin-left: 0
 
         .duration
           font-size: $mediumFontSize
@@ -276,4 +280,31 @@ h1
 .clearfix::after
   clear: both
 
-//886px  
+@media screen and (max-width: 920px)
+  .movie
+    .details
+      .description
+        height: auto
+      .header
+        .title
+          margin-bottom: 2px
+        .meta
+          float: left
+
+@media screen and (max-width: 789px)
+  .movie
+    .artwork
+      margin-left: 3%
+    .details
+      margin-left: 10%
+      .description
+      .header
+        .meta
+          float: left
+
+
+
+
+
+
+
