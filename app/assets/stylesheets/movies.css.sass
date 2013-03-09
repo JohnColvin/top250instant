@@ -93,7 +93,7 @@ h1
   font-size: 15px
   font-family: $boldFont, sans-serif
   margin: 0 6.1%
-  +transition (all .2s linear)
+  +transition (color .2s linear)
   
   &:first-child
     margin: 0 6% 0 0
@@ -125,12 +125,14 @@ h1
   &.available
 
     .fontello-play-circle
+      display: block
       color: $red
-      +transition ($transition)
+      +transition (all .3s ease-in-out)
 
     
       &:hover
         color: $dark
+        +transform (rotate(360deg))
 
   &:hover
     .description, .rank, .duration
@@ -222,6 +224,10 @@ h1
         font-size: $mediumFontSize
         line-height: 30px
         max-width: 500px
+        width: 430px
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
 
       .meta
         float: right
@@ -269,3 +275,5 @@ h1
 
 .clearfix::after
   clear: both
+
+//886px  
