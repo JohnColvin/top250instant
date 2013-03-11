@@ -36,8 +36,7 @@ a
 
 header
   background-color: #c94444
-  color: #eee
-  height: 120px
+  color: #eeeeee
 
 .view-select
   float: right
@@ -74,7 +73,7 @@ a.view-select
 h1
   font-size: 60px
   font-family: $boldFont, sans-serif
-  margin: 0
+  margin: 0 0 76px 0
   position: relative
   top: 40px
   float: left
@@ -94,6 +93,9 @@ h1
   font-family: $boldFont, sans-serif
   margin: 0 6.1%
   +transition (color .2s linear)
+  
+  @media screen and (max-width: 503px)
+    margin: 0 3.1% 
   
   &:first-child
     margin: 0 6% 0 0
@@ -293,15 +295,55 @@ h1
 
 @media screen and (max-width: 789px)
   .movie
+    margin: 0 0 80px 0
+    .description, .rank, .duration
+      color: $dark !important
     .artwork
-      margin-left: 3%
+      margin-left: 34%
     .details
-      margin-left: 10%
+      margin-left: 2%
+      margin-right: 2%
+      width: 96%
       .description
       .header
         .meta
           float: left
 
+@media screen and (max-width: 629px)
+  header
+    .wrapper
+      a.view-select
+        float: left
+        margin-right: 35px
+        margin-bottom: 28px
+      h1
+        margin: 0 0 36px 0
+        float: none
+
+@media screen and (max-width: 600px)
+  .movie
+    margin: 0 0 80px 0
+    .artwork
+      margin-left: 32%
+
+@media screen and (max-width: 500px)
+  .movie
+    margin: 0 0 80px 0
+    .artwork
+      margin-left: 29%
+
+@media screen and (max-width: 462px)
+  header
+    .wrapper
+      h1
+        font-size: 40px
+        margin: 0 0 22px 0
+
+@media screen and (max-width: 400px)
+  .movie
+    margin: 0 0 80px 0
+    .artwork
+      margin-left: 26%
 
 
 
