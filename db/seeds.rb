@@ -28,7 +28,15 @@ movies = [
   { imdb_id: "tt1201607", netflix_api_url: "http://api-public.netflix.com/catalog/titles/movies/70120085", title: "Harry Potter and the Deathly Hallows: Part II" },
   { imdb_id: "tt0087544", netflix_api_url: "http://api-public.netflix.com/catalog/titles/movies/70019062", title: "Nausicaa of the Valley of the Wind" },
   { imdb_id: "tt0013442", netflix_api_url: "http://api-public.netflix.com/catalog/titles/movies/812752",   title: "Nosferatu: Original Version" },
-  { imdb_id: "tt0374546", netflix_api_url: "http://api-public.netflix.com/catalog/titles/movies/60036764", title: "Spring, Summer, Fall, Winter... and Spring" }
+  { imdb_id: "tt0374546", netflix_api_url: "http://api-public.netflix.com/catalog/titles/movies/60036764", title: "Spring, Summer, Fall, Winter... and Spring" },
+  { imdb_id: "tt0043014", netflix_api_url: "http://api-public.netflix.com/catalog/titles/movies/60010956", title: "Sunset Boulevard" },
+  { imdb_id: "tt0040522", netflix_api_url: "http://api-public.netflix.com/catalog/titles/movies/11519642", title: "The Bicycle Thief" },
+  { imdb_id: "tt0060827", netflix_api_url: "http://api-public.netflix.com/catalog/titles/movies/60033908", title: "Persona" },
+  { imdb_id: "tt0338564", netflix_api_url: "http://api-public.netflix.com/catalog/titles/movies/70001550", title: "Infernal Affairs" },
+  { imdb_id: "tt0101414", netflix_api_url: "http://api-public.netflix.com/catalog/titles/movies/60023956", title: "Beauty and the Beast: Special Edition" },
+  { imdb_id: "tt0986264", netflix_api_url: "http://api-public.netflix.com/catalog/titles/movies/70087087", title: "Taare Zameen Par" },
+  { imdb_id: "tt0118694", netflix_api_url: "http://api-public.netflix.com/catalog/titles/movies/60004444", title: "In the Mood for Love" },
+  { imdb_id: "tt0057012", netflix_api_url: "http://api-public.netflix.com/catalog/titles/movies/60020009", title: "Dr. Strangelove" }
 ]
 
 movies.each do |movie_attributes|
