@@ -16,3 +16,5 @@
 
 /config/*.yml
 /public/index.html
+
+.DS_Store
