@@ -225,15 +225,10 @@ h1
         font-size: $mediumFontSize
         line-height: 30px
         max-width: 500px
-        width: 100%
+        width: 63%
         white-space: nowrap
         overflow: hidden
         text-overflow: ellipsis
-
-        .year
-          font-family: $mediumFont
-          color: $lightGray
-          font-size: 64%
 
       .meta
         float: right
@@ -244,6 +239,13 @@ h1
 
           &:first-child
             margin-left: 0
+
+        .year
+          font-family: $mediumFont
+          color: $lightGray
+          margin-top: 5px
+          font-size: 15px
+          margin-right: -3px
 
         .duration
           font-size: $mediumFontSize
@@ -261,6 +263,7 @@ h1
           width: 50px
           text-align: center
           margin-top: 6px
+          margin-right: -7px
           border-radius: 6px
 
         .fontello-play-circle
@@ -277,8 +280,8 @@ h1
       overflow: hidden
       +transition ($transition)
 
-    .touch-device
-      color: $dark !important
+.touch-device
+  color: $dark !important
 
 .clearfix::before, .clearfix::after
   display: table
@@ -310,6 +313,8 @@ h1
       width: 96%
       .description
       .header
+        .title
+          width: 100%
         .meta
           float: left
 
@@ -344,10 +349,18 @@ h1
         margin: 0 0 22px 0
 
 @media screen and (max-width: 400px)
+  .sorting
+    margin: 0 3.8%
+    font-size: 12px
+    &:first-child
+      margin: 0 4% 0 0
+    &:last-child
+      margin: 0 0 0 4%
+
   .movie
-    margin: 0 0 80px 0
+    margin: 0 0 100px 0
     .artwork
-      margin-left: 18%
+      margin-left: 19%
 
 
 
