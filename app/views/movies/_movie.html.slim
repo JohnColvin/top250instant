@@ -12,7 +12,9 @@
   .details
 
     .header
-      .title= movie.title
+      .title
+        = movie.title
+        span.year= " (#{movie.release_year})"
 
       - if movie.on_netflix?
         .meta

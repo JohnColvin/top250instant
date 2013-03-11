@@ -136,7 +136,7 @@ h1
         +transform (rotate(360deg))
 
   &:hover
-    .description, .rank, .duration
+    .description, .rank, .duration, .year
       color: $dark !important
 
     .reflect 
@@ -230,6 +230,11 @@ h1
         white-space: nowrap
         overflow: hidden
         text-overflow: ellipsis
+
+        .year
+          font-family: $mediumFont
+          color: $lightGray
+          font-size: 64%
 
       .meta
         float: right
