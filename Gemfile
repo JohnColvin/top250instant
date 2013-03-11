@@ -21,7 +21,6 @@ gem 'jquery-rails'
 gem 'netflix4r', :github => 'JohnColvin/netflix4r'
 gem 'quiet_assets'
 gem 'slim-rails'
-gem 'turbolinks'
 
 gem 'nokogiri'
 gem 'pry', :group => [:development, :test]
