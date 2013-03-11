@@ -14,10 +14,10 @@
     .header
       .title
         = movie.title
-        span.year= " (#{movie.release_year})"
 
       - if movie.on_netflix?
         .meta
+          .year= " (#{movie.release_year})"
           - unless movie.length.nil?
             .duration= Time.at(movie.length).gmtime.strftime('%k hr %M min')
           .rating= movie.mpaa_rating
