@@ -17,17 +17,10 @@ html
         = link_to root_url do
           h1.logo
         = render 'filter_link'
-<<<<<<< HEAD
 
-    = render 'sorting_options'
-=======
         .search-icon
     .search-field
       input type="search" name="search" placeholder="Search for a Movie"
-    .sorting-types
-      .wrapper
-        - { imdb_ranking: '1 - 250', title: 'A - Z', mpaa_rating: 'RATING', release_year: 'YEAR', length: 'LENGTH' }.each do |sort_param, link_text|
-          a.sorting data-remote="true" href="?sort=#{sort_param}" class="#{params[:sort] == sort_param.to_s ? 'sort-selected' : ''}" #{link_text}
->>>>>>> Added search field
+    = render 'sorting_options'
 
     #page= yield

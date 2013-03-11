@@ -1,14 +1,14 @@
 development:
   adapter: sqlite3
-  database: top250instant
+  database: db/top250instant.sqlite3
   host: localhost
 
 test:
   adapter: sqlite3
-  database: top250instant_test
+  database: db/top250instant_test.sqlite3
   host: localhost
 
 production:
   adapter: postgresql
-  database: top250instant
+  database: db/top250instant.sqlite3
   host: localhost
