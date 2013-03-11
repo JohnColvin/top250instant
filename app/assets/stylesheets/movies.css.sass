@@ -111,6 +111,7 @@ input[type="search"], textarea, input[type="search"]
   font-family: $boldFont, sans-serif
   +transition (all .3s ease-in-out)
   border-radius: 6px
+  overflow: hidden
 
   &:focus
     box-shadow: none
@@ -126,6 +127,9 @@ input[type="search"], textarea, input[type="search"]
     color: #762320
   &:-moz-placeholder
     color: #762320
+
+.toggleable
+  display: none
 
 .sorting-types
   background-color: #dfdfdf
@@ -394,6 +398,8 @@ input[type="search"], textarea, input[type="search"]
   h1.logo
     margin: 0 0 32px 0
     top: 14px
+  .toggleable
+    display: block
   .view-select
     margin-top: 14px
   .sorting

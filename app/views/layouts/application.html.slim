@@ -18,8 +18,9 @@ html
           h1.logo
         = render 'filter_link'
 
-        .search-icon
-    .search-field
+        = link_to '#' do
+          .search-icon
+    .search-field.toggleable
       input type="search" name="search" placeholder="Search for a Movie"
     = render 'sorting_options'
 
