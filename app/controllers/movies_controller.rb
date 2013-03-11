@@ -9,6 +9,7 @@ class MoviesController < ApplicationController
     @imdb_movies = @imdb_movies.order('imdb_ranking asc')
     params[:sort] = 'imdb_ranking' if params[:sort].blank?
 
+    params[:filter] = 'streaming' if params[:filter].blank?
     @show_all = params[:filter] == 'all'
     @imdb_movies = @imdb_movies.select{ |m| m.netflix_instant? } unless @show_all
   end
