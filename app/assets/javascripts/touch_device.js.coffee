@@ -1,0 +1,1 @@
+$ -> $(".description, .rank, .duration, .year").addClass("touch-device") if ('ontouchstart' in window) == true
