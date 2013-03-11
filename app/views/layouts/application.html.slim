@@ -20,8 +20,13 @@ html
 
         = link_to '#' do
           .search-icon
+
     .search-field.toggleable
-      input type="search" name="search" placeholder="Search for a Movie"
+      = form_tag '', id: "search-form", method: 'get' do
+        input type="search" id="term" name="term" autocomplete="off" placeholder="Search for a Movie"
+        = hidden_field_tag :sort, params[:sort]
+        = hidden_field_tag :filter, params[:filter]
+
     = render 'sorting_options'
 
     #page= yield

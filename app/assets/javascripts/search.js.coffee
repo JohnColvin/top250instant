@@ -1,0 +1,1 @@
+$ -> $('form#search-form #term').keyup -> $(this).queueSubmission(delay: 400, require_change: true)

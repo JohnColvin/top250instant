@@ -25,6 +25,9 @@ body
   margin: 0 auto
   @extend .clearfix
 
+form
+  margin: 0
+
 a
   text-decoration: none
 
@@ -346,6 +349,10 @@ input[type="search"], textarea, input[type="search"]
 .clearfix::after
   clear: both
 
+.no-movies-message
+  text-align: center
+  color: $lightGray
+
 @media screen and (max-width: 920px)
   .movie
     .details
@@ -415,9 +422,3 @@ input[type="search"], textarea, input[type="search"]
     margin: 0 0 100px 0
     .artwork
       margin-left: 19%
-
-
-
-
-
-

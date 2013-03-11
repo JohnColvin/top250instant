@@ -1,1 +1,5 @@
-= render partial: 'movie', collection: @imdb_movies, locals: { show_ranking: true }
+- if @imdb_movies.empty? && params[:term].present?
+  .no-movies-message
+    h3 Uh oh! No #{ 'streaming' unless @show_all } movies match "#{params[:term]}"
+- else
+  = render partial: 'movie', collection: @imdb_movies, locals: { show_ranking: true }

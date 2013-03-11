@@ -33,4 +33,8 @@ class Movie < ActiveRecord::Base
     where('imdb_ranking IS NOT NULL')
   end
 
+  def self.search(term)
+    where{(title =~ "%#{term}%")}
+  end
+
 end

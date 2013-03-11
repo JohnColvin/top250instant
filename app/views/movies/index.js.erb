@@ -1,3 +1,9 @@
 $("#page").html("<%= j(render(file: 'movies/index', formats: [:html])) %>");
 $('#instant-toggle').html("<%= j(render('filter_link')) %>");
 $('.sorting-types').html("<%= j(render('sorting_options')) %>");
+$('#search-form input#filter').attr('value', "<%= j(params[:filter]) %>")
+$('#search-form input#sort').attr('value', "<%= j(params[:sort]) %>")
+
+<% if params[:term].blank? %>
+  $('#search-form input#term').val('')
+<% end %>
