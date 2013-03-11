@@ -1,5 +1,7 @@
 class MoviesController < ApplicationController
 
+  respond_to :html, :js
+
   def index
     @imdb_movies = Movie.imdb_top_250
 
