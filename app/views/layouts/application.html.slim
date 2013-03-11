@@ -6,6 +6,7 @@ html
     = javascript_include_tag "application"
     = csrf_meta_tags
     link href='http://fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' type='text/css'
+    link rel='icon' href='favicon.ico'
     script src="http://jsapi.netflix.com/us/api/js/api.js"
     meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no"
 
@@ -13,9 +14,20 @@ html
 
     header
       .wrapper
-        h1 Best On Instant
+        = link_to root_url do
+          h1.logo
         = render 'filter_link'
+<<<<<<< HEAD
 
     = render 'sorting_options'
+=======
+        .search-icon
+    .search-field
+      input type="search" name="search" placeholder="Search for a Movie"
+    .sorting-types
+      .wrapper
+        - { imdb_ranking: '1 - 250', title: 'A - Z', mpaa_rating: 'RATING', release_year: 'YEAR', length: 'LENGTH' }.each do |sort_param, link_text|
+          a.sorting data-remote="true" href="?sort=#{sort_param}" class="#{params[:sort] == sort_param.to_s ? 'sort-selected' : ''}" #{link_text}
+>>>>>>> Added search field
 
     #page= yield

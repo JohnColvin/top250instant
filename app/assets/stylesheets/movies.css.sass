@@ -31,7 +31,7 @@ a
 .wrapper
   max-width: 960px
   margin: auto
-  padding: 0 32px 0 32px
+  padding: 0 32px
   @extend .clearfix
 
 header
@@ -46,7 +46,7 @@ header
   height: 44px
   border-radius: 6px
   font-family: $boldFont, sans-serif
-  margin-top: 37px
+  margin-top: 38px
   position: relative
 
   i
@@ -69,13 +69,63 @@ a.view-select
   color: #eee
   text-decoration: none
 
-h1
+h1.logo
+  background: url(/assets/logo@2x.png)
+  width: 69px
+  height: 44px
+  background-size: 100%
   font-size: 60px
   font-family: $boldFont, sans-serif
   margin: 0 0 76px 0
   position: relative
-  top: 40px
+  top: 38px
   float: left
+
+.search-icon
+  background: url(/assets/search@2x.png)
+  width: 22px
+  height: 22px
+  background-size: 100%
+  float: right
+  margin: 50px 16px 0 0
+  position: relative
+
+.search-field
+  width: 100%
+  padding: 14px 32px
+  background-color: #852927
+
+input[type="search"], textarea, input[type="search"]
+  -webkit-appearance: none
+  color: #762320
+  width: 100%
+  max-width: 898px
+  box-sizing: border-box
+  display: block
+  margin: auto
+  border: none
+  box-shadow: none
+  padding: 20px
+  text-align: center
+  background-color: #94312f
+  font-family: $boldFont, sans-serif
+  +transition (all .3s ease-in-out)
+  border-radius: 6px
+
+  &:focus
+    box-shadow: none
+    background-color: #dfdfdf
+    font-family: $boldFont, sans-serif
+    border-radius: 6px
+
+  &::-webkit-input-placeholder
+    color: #762320
+  &::-moz-placeholder
+    color: #762320
+  &:-ms-input-placeholder 
+    color: #762320
+  &:-moz-placeholder
+    color: #762320
 
 .sorting-types
   background-color: #dfdfdf
@@ -225,7 +275,7 @@ h1
         font-size: $mediumFontSize
         line-height: 30px
         max-width: 500px
-        width: 63%
+        width: 54%
         white-space: nowrap
         overflow: hidden
         text-overflow: ellipsis
@@ -246,6 +296,7 @@ h1
           margin-top: 5px
           font-size: 15px
           margin-right: -3px
+          +transition ($transition)
 
         .duration
           font-size: $mediumFontSize
@@ -321,13 +372,7 @@ h1
 @media screen and (max-width: 629px)
   header
     .wrapper
-      a.view-select
-        float: left
-        margin-right: 35px
-        margin-bottom: 28px
-      h1
-        margin: 0 0 36px 0
-        float: none
+      
 
 @media screen and (max-width: 600px)
   .movie
@@ -344,11 +389,13 @@ h1
 @media screen and (max-width: 462px)
   header
     .wrapper
-      h1
-        font-size: 40px
-        margin: 0 0 22px 0
 
 @media screen and (max-width: 400px)
+  h1.logo
+    margin: 0 0 32px 0
+    top: 14px
+  .view-select
+    margin-top: 14px
   .sorting
     margin: 0 3.8%
     font-size: 12px
@@ -356,7 +403,8 @@ h1
       margin: 0 4% 0 0
     &:last-child
       margin: 0 0 0 4%
-
+  .search-icon
+    display: none
   .movie
     margin: 0 0 100px 0
     .artwork
