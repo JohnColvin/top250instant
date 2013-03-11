@@ -1,0 +1,4 @@
+#instant-toggle
+  a.view-select data-remote="true" href="?sort=#{params[:sort]}&filter=#{ @show_all ? 'streaming' : 'all' }"
+    .text= @show_all ? 'STREAMING' : 'ALL'
+    i.fontello-arrow-combo
