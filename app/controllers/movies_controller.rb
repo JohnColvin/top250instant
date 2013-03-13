@@ -16,4 +16,9 @@ class MoviesController < ApplicationController
     @imdb_movies = @imdb_movies.select{ |m| m.netflix_instant? } unless @show_all
   end
 
+  def best
+    
+    
+  end
+
 end
